@@ -2,7 +2,7 @@ package postgres
 
 import (
 	"database/sql"
-	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"strconv"
 	"strings"
@@ -137,7 +137,7 @@ func (i *RowInserter) insert(table string, values []any, database *Database) err
 		case uint64:
 			values[i] = strconv.FormatUint(v, 10)
 		case []uint8:
-			values[i] = base64.StdEncoding.EncodeToString(v)
+			values[i] = hex.EncodeToString(v)
 		case *timestamppb.Timestamp:
 			values[i] = "'" + v.AsTime().Format(time.RFC3339) + "'"
 		case []interface{}:

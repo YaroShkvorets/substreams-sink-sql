@@ -1,7 +1,7 @@
 package clickhouse
 
 import (
-	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"strconv"
 	"strings"
@@ -174,7 +174,7 @@ func ValueToString(value any) (s string) {
 	case float32:
 		s = strconv.FormatFloat(float64(v), 'f', -1, 32)
 	case []uint8:
-		s = "'" + base64.StdEncoding.EncodeToString(v) + "'"
+		s = "'" + hex.EncodeToString(v) + "'"
 	case bool:
 		s = strconv.FormatBool(v)
 	case time.Time:
