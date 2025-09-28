@@ -9,13 +9,13 @@ import (
 
 func Run(service *pbsql.Service, logger *zap.Logger) error {
 	if service.HasuraFrontend != nil {
-		panic("Hasura front end not supported yet")
+		logger.Warn("Hasura front end not supported yet, ignoring")
 	}
 	if service.PostgraphileFrontend != nil {
-		panic("Postgraphile front end not supported yet")
+		logger.Warn("Postgraphile front end not supported yet, ignoring")
 	}
 	if service.RestFrontend != nil {
-		panic("Rest front end not supported yet")
+		logger.Warn("Rest front end not supported yet, ignoring")
 	}
 
 	if service.DbtConfig != nil && service.DbtConfig.Enabled {
